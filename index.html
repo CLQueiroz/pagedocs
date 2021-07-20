@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+  <link href="assets/images/favicon.png" rel="icon" />
+  <title>Documentation | Your ThemeForest item Name</title>
+  <meta name="description" content="Your ThemeForest item Name and description">
+  <meta name="author" content="harnishdesign.net">
+
+  <!-- Stylesheet
+============================== -->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css" />
+  <!-- Font Awesome Icon -->
+  <link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css" />
+  <!-- Magnific Popup -->
+  <link rel="stylesheet" type="text/css" href="assets/vendor/magnific-popup/magnific-popup.min.css" />
+  <!-- Highlight Syntax -->
+  <link rel="stylesheet" type="text/css" href="assets/vendor/highlight.js/styles/github.css" />
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="assets/css/stylesheet.css" />
+</head>
+
+<body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
+
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="lds-ellipsis">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <!-- Preloader End -->
+
+  <!-- Document Wrapper   
+=============================== -->
+  <div id="main-wrapper">
+
+    <!-- Header
+  ============================ -->
+    <header id="header" class="sticky-top">
+      <!-- Navbar -->
+      <nav class="primary-menu navbar navbar-expand-lg navbar-dropdown-dark">
+        <div class="container-fluid">
+          <!-- Sidebar Toggler -->
+          <button id="sidebarCollapse" class="navbar-toggler d-block d-md-none" type="button"><span></span><span
+              class="w-75"></span><span></span></button>
+
+          <!-- Logo -->
+          <h3>
+            Docs API Ingressos
+          </h3>
+          <span class="text-2 ml-2">v1.0</span>
+          <!-- Logo End -->
+        </div>
+      </nav>
+      <!-- Navbar End -->
+    </header>
+    <!-- Header End -->
+
+    <!-- Content
+  ============================ -->
+    <div id="content" role="main">
+
+      <!-- Sidebar Navigation
+	============================ -->
+      <div class="idocs-navigation bg-light">
+        <ul class="nav flex-column ">
+          <li class="nav-item"><a class="nav-link active" href="#Sobre">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#Endpoints">Endpoints</a>
+            <ul class="nav flex-column">
+              <li class="nav-item"><a class="nav-link" href="#Ingressos">Ingressos</a>
+                <ul class="nav flex-column">
+                  <li class="nav-item"><a class="nav-link" href="#getingressos">GET /ingressos</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#getingressoscpf">GET /ingressos/CPF</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#postingessos">POST /ingressos</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#deleteingressos">DELETE /ingressos/ID</a></li>
+                </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="#Shows">Shows</a>
+                <ul class="nav flex-column">
+                  <li class="nav-item"><a class="nav-link" href="#getshows">GET /shows</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#getshowsid">GET /shows/id</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#postshows">POST /shows</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#deleteshows">DELETE /shows/ID</a></li>
+                </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="#relatorios">Relatórios</a>
+                <ul class="nav flex-column">
+                  <li class="nav-item"><a class="nav-link" href="#getrelatorios">GET /relatorios</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#Tecnologias">Tecnologias Utilizadas</a></li>
+          <li class="nav-item"><a class="nav-link" href="#diagramamer">Diagrama MER</a></li>
+        </ul>
+      </div>
+
+      <!-- Docs Content
+	============================ -->
+      <div class="idocs-content">
+        <div class="container">
+
+          <!-- Getting Started
+		============================ -->
+          <section id="Sobre">
+            <h1>Documentação</h1>
+            <h2>Projeto Ingressos API v1.0</h2>
+            <p class="lead">API desenvolvida para que seja possível realizar a compra de ingressos do seu show
+              favorito.
+              Nela o
+              desenvolvedor pode
+              integrar as informações de compras de ingressos e também realizar cadastros de Ingressos e shows
+              diretamente
+              pelo seu
+              sistema. Também consegue exportar uma listagem/relatório de todas as compras realizadas.</p>
+            <hr>
+            <div class="row">
+              <div class="col-sm-6 col-lg-4">
+                <ul class="list-unstyled">
+                  <li><strong>Versão:</strong> 1.0</li>
+                  <li><strong>Autor:</strong> Caique Queiroz</li>
+                </ul>
+              </div>
+              <div class="col-sm-6 col-lg-4">
+                <ul class="list-unstyled">
+                  <li><strong class="font-weight-700">Criado:</strong> 15 Julho, 2021</li>
+                  <li><strong>Atualizado:</strong> 15 Julho, 2021</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <hr class="divider">
+
+          <section id="Endpoints">
+            <h2>Endpoints</h2>
+            <p class="lead mb-5">Na versão 1.0 da API, é disponibilizado 3 endpoints <b>Ingressos</b> - <b>Shows</b> -
+              <b>Relatórios</b>
+            </p>
+          </section>
+
+          <section id="Ingressos">
+            <h2>Ingressos</h2>
+            <p>No endpoint de ingresso é possível comprar, cancelar, atualizar e listar as compras realizadas filtrando
+              por CPF, ou todas as compras realizadas.</p>
+
+            <!-- Róta GET ingresos -->
+            <h4 id="getingressos">GET /ingressos</h4>
+            <p>Para visualizar todos os ingressos comprados de todas as pessoas, utilizar o endpoint de
+              <b>/ingressos</b> podemos
+              visualizar todos os ingressos comprados selecionando o método <b>GET /ingressos </b> será retornado um 200
+              de sucesso, com a seguinte estrutura:
+            </p>
+            <pre>
+              <code class="html">
+      {
+        "id": 1,
+        "nome": "Joãosinho",
+        "email": "joasinho@hotmail.com",
+        "cpf": "11111111111",
+        "detalheShowId": 10
+      }
+              </code>
+            </pre>
+
+            <!-- Róta GET ingresos/cpf -->
+            <h4 id="getingressoscpf">GET /ingressos/{CPF}</h4>
+            <p>Para visualizar todos os ingressos comprados por CPF, utilizar o endpoint de /ingressos podemos
+              visualizar todos os
+              ingressos comprados selecionando o método GET /ingressos/{CPF}. Ao informar o CPF será retornado todos os
+              ingressos
+              comprados pelo mesmo será retornado um 200 de sucesso, com a seguinte estrutura:</p>
+            <ul>
+              <li>
+                Informar o CPF no parametro da rota GET /ingressos/11111111111
+              </li>
+            </ul>
+            <pre>
+         <code class="html">
+        {
+          "id": 1,
+          "nome": "Joãosinho",
+          "email": "joasinho@hotmail.com",
+          "cpf": "11111111111",
+          "detalheShowId": 10
+        }
+         </code>
+         </pre>
+            <!-- Róta POST ingresos -->
+            <h4 id="postingessos">POST /ingressos</h4>
+            <p>Para Realizar a compra, utilizar o endpoint de /ingressos. No método POST /ingressos enviar as
+              informações básicas do
+              comprador e informar o DetalheShowId que contem as informações do show desejado para compra. Será
+              realizado as seguintes
+              validações.
+            </p>
+            <ul>
+              <li>
+                CPF Comprador precisa ser válido.
+              </li>
+              <li>
+                Email do Comprador precisa ser válido
+              </li>
+              <li>
+                DetalheShowId do show precisa existir na base de dados.
+              </li>
+              <li>
+                Após a compra será atualizado a capacidade do DetalheShow comprado.
+              </li>
+              <li>
+                Não é permitido a compra do mesmo ingresso por CPF.
+              </li>
+              <li>
+                Não é permitido a compra de um ingresso com capacidade esgotada.
+              </li>
+            </ul>
+            Exemplo de Request:
+            <pre>
+          <code class="html">
+          {
+            "nome": "Joãosinho",
+            "email": "joasinho@hotmail.com",
+            "cpf": "11111111111",
+            "detalheShowId": 10
+          }
+            </code>
+          </pre>
+            Após validações será retornado um 200 com o ingresso comprado com a seguinte estrutura:
+            <pre>
+                      <code class="html">
+          {
+            "id": 1,
+            "nome": "Joãosinho",
+            "email": "joasinho@hotmail.com",
+            "cpf": "11111111111",
+            "detalheShowId": 10
+          }
+            </code>
+          </pre>
+            <h4 id="deleteingressos">DELETE /ingressos/{ID}</h4>
+            <p>Para Realizar o cancelamento da compra, utilizar o endpoint de /ingressos. No método DELETE
+              /ingressos/{ID} informar o
+              ID do show que deseja cancelar.
+            <ul>
+              <li>
+                caso não exista o ingresso será retornado um STATUS 404.
+              </li>
+              <li>
+                caso de tudo OK será retornado um STATUS 200.
+              </li>
+            </ul>
+            </p>
+            </h4>
+          </section>
+
+          <hr class="divider">
+
+          <!-- Endpoint Shows
+		============================ -->
+          <section id="Shows">
+            <h2>Shows</h2>
+            <p class="lead">No endpoint de shows é possível cadastrar, excluir, atualizar e listar os shows cadastrados.
+            </p>
+            <h4 class="mt-5" id="getshows">GET /Shows</h4>
+            <p>
+              Para visualizar todos os shows disponíveis utilizar o endpoint de /Shows podemos visualizar todos os shows
+              disponíveis
+              para compra no método GET /shows será retornado um Status 200 com todos os shows cadastrados(Ja vem
+              cadastrado uma lista
+              com 10 shows disponíveis). Assim como o exemplo a seguir:
+            </p>
+            <pre>
+            <code class="html">
+            {
+              "id": 1,
+              "titulo": "AC/DC",
+              "data": "2021-12-29T00:00:00",
+              "detalheShows": {
+                "id": 1,
+                "tipoIngressoId": 1,
+                "capacidade": 10,
+                "valor": 1000,
+                "showDisponivel": "Sim"
+              }
+            }
+              </code>
+            </pre>
+
+            <h4 class="mt-5" id="getshowsid">GET /Shows/{ID}</h4>
+            <p>
+              Para visualizar um show específico utilizar o endpoint de /shows. ao selecionar o método GET /Shows/{ID}
+              será retornado
+              Status 200 com o show. Assim como o exemplo a seguir:
+            <ul>
+              <li>
+                GET /shows/1
+              </li>
+            </ul>
+            </p>
+            <pre>
+            <code class="html">
+            {
+              "id": 1,
+              "titulo": "AC/DC",
+              "data": "2021-12-29T00:00:00",
+              "detalheShows": {
+                "id": 1,
+                "tipoIngressoId": 1,
+                "capacidade": 10,
+                "valor": 1000,
+                "showDisponivel": "Sim"
+              }
+            }
+              </code>
+            </pre>
+
+            <h4 id="postshows">POST /Shows</h4>
+            <p>Para cadastrar um novo show, utilizar o endpoint de /shows. No método POST /shows/{ID} informar as
+              propriedades
+              obrigatórias, caso ok, será retornado um Status 200 com o show criado. As seguintes propriedades são
+              obrigatórias para a
+              criação do mesmo.
+            </p>
+            <ul>
+              <li>
+                Titulo Precisa ser uma string.
+              </li>
+              <li>
+                Data Tipo do campo Datetime utilizar como exemplo '2021-12-25'.
+              </li>
+              <li>
+                DetalheShowId do show precisa existir na base de dados.
+              </li>
+              <li>
+                DetalheShow No Objeto DetalheShow é para detalhar as informações principais do ingresso, Capacidade,
+                valor e o
+                tipoIngressoId que cada ingresso pode conter até 3 tipos de ignressos sendo eles VIP - CAMAROTE - PISTA
+              </li>
+            </ul>
+            Exemplo para criar um novo shows:
+            <pre>
+            <code class="html">
+          {
+            "titulo": "Linkin Park",
+            "data": "2021-11-22",
+            "detalheShows":
+            {
+              "capacidade": 50,
+              "valor": 3000.00,
+              "tipoingressoId": 1
+            }
+          }
+              </code>
+            </pre>
+            Após validações será retornado um 200 com o show cadastrado com a seguinte estrutura:
+            <pre>
+            <code class="html">
+            {
+              "id": 1,
+              "titulo": "Bee gees",
+              "data": "2021-12-23",
+              "detalheShows": {
+                "id": 1,
+                "tipoIngressoId": 1,
+                "capacidade": 100,
+                "valor": 250.00,
+                "showDisponivel": "Sim"
+               }
+            }
+                        </code>
+                      </pre>
+            <h4 id="deleteshows">DELETE /Shows/{ID}</h4>
+            <p>Para excluir o show, utilizar o endpoint de /shows. No método DELETE /shows/{ID} informar o ID do show
+              que deseja
+              cancelar, caso ok, será retornado um Status 200 confirmando a exclusão.
+            <ul>
+              <li>
+                caso não exista o ingresso será retornado um STATUS 404.
+              </li>
+              <li>
+                caso de tudo OK será retornado um STATUS 200.
+              </li>
+            </ul>
+            </p>
+          </section>
+
+          <hr class="divider">
+
+          <!-- Endpoint Relatórios            
+		============================ -->
+          <section id="relatorios">
+            <h2>Relatórios</h2>
+            <p>
+              No Endpoint de relatórios, será utilizado apenas o método GET /Relatorios e será retornado uma listagem de
+              todas as
+              compras realizadas em planilha.
+            </p>
+
+            <h4 id="getrelatorios">GET /Relatorios</h4>
+            <p>Será retornado um status 200 ok caso de certo, e a o caminho onde a planilha foi salva.</p>
+
+            <pre>
+              <code>
+          Arquivo gerado com sucesso em C:\Users\caiqu\Documents\Treinamentos Desenvolvimento
+          Active\Testes\ProjetoIngressosAPI\ProjetoIngressosAPI\bin\Debug\netcoreapp3.1\\ListagemPessoasporShow.xlsx
+              </code>
+            </pre>
+
+            <hr class="divider">
+
+            <!-- Tecnologias
+		============================ -->
+            <section id="Tecnologias">
+              <h2>Tecnologias Utilizadas</h2>
+              <ul>
+                <li>Asp.Net Core API WEB 3.1</li>
+                <li>Banco de dados em SQLite</li>
+                <li>Entity Framework Core 3.1</li>
+              </ul>
+            </section>
+
+            <hr class="divider">
+
+            <section id="diagramamer">
+              <h2>Diagrama do banco de dados</h2>
+              <div class="row">
+                <div class="col-lg-6">
+                  <p><a class="popup-img" href="assets/merlogico.jpeg"><img class="img-fluid border"
+                        src="assets/merlogico.jpeg" alt=""></a></p>
+                </div>
+              </div>
+            </section>
+            <!-- JavaScript
+============================ -->
+            <script src="assets/vendor/jquery/jquery.min.js"></script>
+            <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Highlight JS -->
+            <script src="assets/vendor/highlight.js/highlight.min.js"></script>
+            <!-- Easing -->
+            <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+            <!-- Magnific Popup -->
+            <script src="assets/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+            <!-- Custom Script -->
+            <script src="assets/js/theme.js"></script>
+</body>
+
+</html>
