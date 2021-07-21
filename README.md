@@ -86,13 +86,14 @@ Na versão 1.0 da API, é disponibilizado 3 endpoints **Ingressos** - **Shows** 
 
 ## Ingressos
 
-No endpoint de ingresso é possível comprar, cancelar, atualizar e listar as compras realizadas filtrando por CPF, ou todas as compras realizadas.
+No endpoint de ingresso é possível comprar, cancelar e listar as compras realizadas filtrando por CPF, ou todas as compras realizadas.
 
 #### GET /ingressos
 
 Para visualizar todos os ingressos comprados de todas as pessoas, utilizar o endpoint de **/ingressos** podemos visualizar todos os ingressos comprados selecionando o método **GET /ingressos** será retornado um 200 de sucesso, com a seguinte estrutura:
 
-<pre>              `{
+<pre>              
+    `{
         "id": 1,
         "nome": "Joãosinho",
         "email": "joasinho@hotmail.com",
@@ -107,7 +108,8 @@ Para visualizar todos os ingressos comprados por CPF, utilizar o endpoint de /in
 
 *   Informar o CPF no parametro da rota GET /ingressos/11111111111
 
-<pre>         `{
+<pre>         
+      `{
           "id": 1,
           "nome": "Joãosinho",
           "email": "joasinho@hotmail.com",
@@ -129,7 +131,8 @@ Para Realizar a compra, utilizar o endpoint de /ingressos. No método POST /ingr
 
 Exemplo de Request:
 
-<pre>          `{
+<pre>          
+         `{
             "nome": "Joãosinho",
             "email": "joasinho@hotmail.com",
             "cpf": "11111111111",
@@ -139,7 +142,8 @@ Exemplo de Request:
 
 Após validações será retornado um 200 com o ingresso comprado com a seguinte estrutura:
 
-<pre>                      `{
+<pre>                      
+         `{
             "id": 1,
             "nome": "Joãosinho",
             "email": "joasinho@hotmail.com",
@@ -150,7 +154,7 @@ Após validações será retornado um 200 com o ingresso comprado com a seguinte
 
 #### DELETE /ingressos/{ID}
 
-Para Realizar o cancelamento da compra, utilizar o endpoint de /ingressos. No método DELETE /ingressos/{ID} informar o ID do show que deseja cancelar.
+Para Realizar o cancelamento da compra, utilizar o endpoint de /ingressos. No método DELETE /ingressos/{ID} informar o ID e o CPF do comprador do show que deseja cancelar.
 
 *   caso não exista o ingresso será retornado um STATUS 404.
 *   caso de tudo OK será retornado um STATUS 200.
@@ -169,7 +173,8 @@ No endpoint de shows é possível cadastrar, excluir, atualizar e listar os show
 
 Para visualizar todos os shows disponíveis utilizar o endpoint de /Shows podemos visualizar todos os shows disponíveis para compra no método GET /shows será retornado um Status 200 com todos os shows cadastrados(Ja vem cadastrado uma lista com 10 shows disponíveis). Assim como o exemplo a seguir:
 
-<pre>            `{
+<pre>            
+         `{
               "id": 1,
               "titulo": "AC/DC",
               "data": "2021-12-29T00:00:00",
