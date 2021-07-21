@@ -35,6 +35,7 @@
         *   [GET /relatorios](#getrelatorios)
 *   [Tecnologias Utilizadas](#Tecnologias)
 *   [Diagrama MER](#diagramamer)
+*   [Fluxogramas Macros](#fluxograma)
 
 </div>
 
@@ -58,6 +59,7 @@ API desenvolvida para que seja possível realizar a compra de ingressos do seu s
 
 *   **Versão:** 1.0
 *   **Autor:** Caique Queiroz
+*   **Repositório da documentação:** [Github](https://github.com/CLQueiroz/pagedocs)
 
 </div>
 
@@ -92,8 +94,7 @@ No endpoint de ingresso é possível comprar, cancelar e listar as compras reali
 
 Para visualizar todos os ingressos comprados de todas as pessoas, utilizar o endpoint de **/ingressos** podemos visualizar todos os ingressos comprados selecionando o método **GET /ingressos** será retornado um 200 de sucesso, com a seguinte estrutura:
 
-<pre>              
-    `{
+<pre>              `{
         "id": 1,
         "nome": "Joãosinho",
         "email": "joasinho@hotmail.com",
@@ -108,8 +109,7 @@ Para visualizar todos os ingressos comprados por CPF, utilizar o endpoint de /in
 
 *   Informar o CPF no parametro da rota GET /ingressos/11111111111
 
-<pre>         
-      `{
+<pre>         `{
           "id": 1,
           "nome": "Joãosinho",
           "email": "joasinho@hotmail.com",
@@ -131,8 +131,7 @@ Para Realizar a compra, utilizar o endpoint de /ingressos. No método POST /ingr
 
 Exemplo de Request:
 
-<pre>          
-         `{
+<pre>          `{
             "nome": "Joãosinho",
             "email": "joasinho@hotmail.com",
             "cpf": "11111111111",
@@ -142,8 +141,7 @@ Exemplo de Request:
 
 Após validações será retornado um 200 com o ingresso comprado com a seguinte estrutura:
 
-<pre>                      
-         `{
+<pre>                      `{
             "id": 1,
             "nome": "Joãosinho",
             "email": "joasinho@hotmail.com",
@@ -171,10 +169,9 @@ No endpoint de shows é possível cadastrar, excluir, atualizar e listar os show
 
 #### GET /Shows
 
-Para visualizar todos os shows disponíveis utilizar o endpoint de /Shows podemos visualizar todos os shows disponíveis para compra no método GET /shows será retornado um Status 200 com todos os shows cadastrados(Ja vem cadastrado uma lista com 10 shows disponíveis). Assim como o exemplo a seguir:
+Para visualizar todos os shows disponíveis utilizar o endpoint de /Shows podemos visualizar todos os shows disponíveis para compra no método GET /shows será retornado um Status 200 com todos os shows cadastrados(Ja existe cadastrado uma lista com 10 shows disponíveis). Assim como o exemplo a seguir:
 
-<pre>            
-         `{
+<pre>            `{
               "id": 1,
               "titulo": "AC/DC",
               "data": "2021-12-29T00:00:00",
@@ -215,7 +212,7 @@ Para cadastrar um novo show, utilizar o endpoint de /shows. No método POST /sho
 *   Titulo Precisa ser uma string.
 *   Data Tipo do campo Datetime utilizar como exemplo '2021-12-25'.
 *   DetalheShowId do show precisa existir na base de dados.
-*   DetalheShow No Objeto DetalheShow é para detalhar as informações principais do ingresso, Capacidade, valor e o tipoIngressoId que cada ingresso pode conter até 3 tipos de ignressos sendo eles VIP - CAMAROTE - PISTA
+*   DetalheShow No Objeto DetalheShow é para detalhar as informações principais do ingresso, Capacidade, valor e o tipoIngressoId que cada ingresso pode conter até 3 tipos de ingresso sendo eles VIP - CAMAROTE - PISTA
 
 Exemplo para criar um novo shows:
 
@@ -295,6 +292,48 @@ Será retornado um status 200 ok caso de certo, e a o caminho onde a planilha fo
 <div class="col-lg-6">
 
 [![](assets/merlogico.jpeg)](assets/merlogico.jpeg)
+
+</div>
+
+</div>
+
+</section>
+
+<section id="fluxograma">
+
+## Fluxogramas Macro
+
+#### Processo Macro Ingressos
+
+<div class="row">
+
+<div class="col-lg-6">
+
+[![](assets/Endpoints Ingressos.jpeg)](assets/Endpoints Ingressos.jpeg)
+
+</div>
+
+</div>
+
+#### Processo Macro Shows
+
+<div class="row">
+
+<div class="col-lg-6">
+
+[![](assets/Endpoints Shows.jpeg)](assets/Endpoints Shows.jpeg)
+
+</div>
+
+</div>
+
+#### Processo Macro Relatórios
+
+<div class="row">
+
+<div class="col-lg-6">
+
+[![](assets/Ednpoint Relatorio.jpeg)](assets/Ednpoint Relatorio.jpeg)
 
 </div>
 
