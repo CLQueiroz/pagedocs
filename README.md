@@ -309,7 +309,7 @@ Será retornado um status 200 ok caso de certo, e a o caminho onde a planilha fo
 
 <div class="col-lg-6">
 
-[![](assets/Endpoints Ingressos.jpeg)](assets/Endpoints Ingressos.jpeg)
+[![](assets/Endpoints Ingressos.jpeg)](assets/endingressos.jpeg)
 
 </div>
 
@@ -321,7 +321,7 @@ Será retornado um status 200 ok caso de certo, e a o caminho onde a planilha fo
 
 <div class="col-lg-6">
 
-[![](assets/Endpoints Shows.jpeg)](assets/Endpoints Shows.jpeg)
+[![](assets/Endpoints Shows.jpeg)](assets/endshows.jpeg)
 
 </div>
 
@@ -333,7 +333,7 @@ Será retornado um status 200 ok caso de certo, e a o caminho onde a planilha fo
 
 <div class="col-lg-6">
 
-[![](assets/Ednpoint Relatorio.jpeg)](assets/Ednpoint Relatorio.jpeg)
+[![](assets/Ednpoint Relatorio.jpeg)](assets/endrelatorio.jpeg)
 
 </div>
 
