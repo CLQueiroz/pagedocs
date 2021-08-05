@@ -150,9 +150,9 @@ Após validações será retornado um 200 com o ingresso comprado com a seguinte
           }` 
           </pre>
 
-#### DELETE /ingressos/{ID}
+#### DELETE /ingressos/{ID}/{CPF}
 
-Para Realizar o cancelamento da compra, utilizar o endpoint de /ingressos. No método DELETE /ingressos/{ID} informar o ID e o CPF do comprador do show que deseja cancelar.
+Para Realizar o cancelamento da compra, utilizar o endpoint de /ingressos. No método DELETE /ingressos/1/11111111111 informar o ID e o CPF do comprador do show que deseja cancelar.
 
 *   caso não exista o ingresso será retornado um STATUS 404.
 *   caso de tudo OK será retornado um STATUS 200.
