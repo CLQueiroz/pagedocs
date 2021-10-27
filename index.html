@@ -53,7 +53,7 @@
           <h3>
             Docs API Ingressos
           </h3>
-          <span class="text-2 ml-2">v1.0</span>
+          <span class="text-2 ml-2">v2.0</span>
           <!-- Logo End -->
         </div>
       </nav>
@@ -70,22 +70,29 @@
       <div class="idocs-navigation bg-light">
         <ul class="nav flex-column ">
           <li class="nav-item"><a class="nav-link active" href="#Sobre">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#historico-revisao">Histórico de revisão</a>
           <li class="nav-item"><a class="nav-link" href="#Endpoints">Endpoints</a>
             <ul class="nav flex-column">
+              <li class="nav-item"><a class="nav-link" href="#Login">Login</a>
+                <ul class="nav flex-column">
+                  <li class="nav-item"><a class="nav-link" href="#postlogin">POST /lOGIN</a></li>
+                </ul>
+              </li>
               <li class="nav-item"><a class="nav-link" href="#Ingressos">Ingressos</a>
                 <ul class="nav flex-column">
                   <li class="nav-item"><a class="nav-link" href="#getingressos">GET /ingressos</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#getingressoscpf">GET /ingressos/CPF</a></li>
                   <li class="nav-item"><a class="nav-link" href="#postingessos">POST /ingressos</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#deleteingressos">DELETE /ingressos/ID</a></li>
                 </ul>
               </li>
               <li class="nav-item"><a class="nav-link" href="#Shows">Shows</a>
                 <ul class="nav flex-column">
-                  <li class="nav-item"><a class="nav-link" href="#getshows">GET /shows</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#getshowsid">GET /shows/id</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#postshows">POST /shows</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#deleteshows">DELETE /shows/ID</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#getshows">GET /Shows</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#getshowsid">GET /Shows/id</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#postshows">POST /Shows</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#putshows">PUT /Shows/ID</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#deleteshows">DELETE /Shows/ID</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#getdetalheshowid">GET /DetalheShow/ID</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#postdetalheshow">POST /DetalheShow</a></li>
                 </ul>
               </li>
               <li class="nav-item"><a class="nav-link" href="#relatorios">Relatórios</a>
@@ -110,7 +117,7 @@
 		============================ -->
           <section id="Sobre">
             <h1>Documentação</h1>
-            <h2>Projeto Ingressos API v1.0</h2>
+            <h2>Projeto Ingressos API v2.0</h2>
             <p class="lead">API desenvolvida para que seja possível realizar a compra de ingressos do seu show
               favorito.
               Nela o
@@ -123,7 +130,7 @@
             <div class="row">
               <div class="col-sm-6 col-lg-4">
                 <ul class="list-unstyled">
-                  <li><strong>Versão:</strong> 1.0</li>
+                  <li><strong>Versão:</strong> 2.0</li>
                   <li><strong>Autor:</strong> Caique Queiroz</li>
 		  <li><strong>Repositório da documentação:</strong><a href="https://github.com/CLQueiroz/pagedocs" target="_blank"> Github </a></li>
                 </ul>
@@ -131,7 +138,7 @@
               <div class="col-sm-6 col-lg-4">
                 <ul class="list-unstyled">
                   <li><strong class="font-weight-700">Criado:</strong> 15 Julho, 2021</li>
-                  <li><strong>Atualizado:</strong> 15 Julho, 2021</li>		  
+                  <li><strong>Atualizado:</strong> 26 Outubro, 2021</li>		  
                 </ul>
               </div>
             </div>
@@ -139,12 +146,45 @@
 
           <hr class="divider">
 
+          <section id="historico-revisao">
+            <h2>Histórico de revisão</h2>
+            <p class="lead mb-1">Na versão 2.0 da API, foi realizado algumas modificações adicionado Endpoints e controle por autenticação via JWT </p>
+            <p class="lead mb-1"> <b>Login</b> </p>
+            <p class="lead mb-1"> <b>Usuários</b> </p>
+            <p class="lead mb-1"> <b>Tipo Usuários</b> </p>
+            <p class="lead mb-1"> <b>Ingressos</b> </p>
+            <p class="lead mb-1"> <b>Shows</b> </p>
+            <p class="lead mb-1"> <b>Tipo Ingressos</b> </p>
+            <p class="lead mb-1"> <b>Relatórios</b> </p>
+          </section>
+
+
           <section id="Endpoints">
             <h2>Endpoints</h2>
             <p class="lead mb-5">Na versão 1.0 da API, é disponibilizado 3 endpoints <b>Ingressos</b> - <b>Shows</b> -
               <b>Relatórios</b>
             </p>
           </section>
+
+
+          <section id="Login">
+            <h2>Login</h2>
+            <p>No endpoint de Login é possível realizar a autenticação irá retornar o token JWT e os dados do usuário logado.</p>
+
+            <!-- Róta POST Login-->
+            <h4 id="postlogin">POST /Login</h4>
+            <p>Para realizar o login precisa ser enviado o e-mail e a senha do usuário no body. </p>
+            <pre>
+                <code class="html">
+            {
+              "email": "joasinho@hotmail.com",
+              "senha": "11111111111"
+            }
+                </code>
+            </pre>
+          </section>
+
+
 
           <section id="Ingressos">
             <h2>Ingressos</h2>
@@ -162,60 +202,26 @@
               <code class="html">
       {
         "id": 1,
-        "nome": "Joãosinho",
-        "email": "joasinho@hotmail.com",
-        "cpf": "11111111111",
-        "detalheShowId": 10
+        "tituloShow": "Beatles",
+        "valor": 299.00,
+        "data": "2021-12-30",
+        "nome": "Caique Queiroz"
       }
               </code>
-            </pre>
-
-            <!-- Róta GET ingresos/cpf -->
-            <h4 id="getingressoscpf">GET /ingressos/{CPF}</h4>
-            <p>Para visualizar todos os ingressos comprados por CPF, utilizar o endpoint de /ingressos podemos
-              visualizar todos os
-              ingressos comprados selecionando o método GET /ingressos/{CPF}. Ao informar o CPF será retornado todos os
-              ingressos
-              comprados pelo mesmo será retornado um 200 de sucesso, com a seguinte estrutura:</p>
-            <ul>
-              <li>
-                Informar o CPF no parametro da rota GET /ingressos/11111111111
-              </li>
-            </ul>
-            <pre>
-         <code class="html">
-        {
-          "id": 1,
-          "nome": "Joãosinho",
-          "email": "joasinho@hotmail.com",
-          "cpf": "11111111111",
-          "detalheShowId": 10
-        }
-         </code>
-         </pre>
+            </pre>          
             <!-- Róta POST ingresos -->
             <h4 id="postingessos">POST /ingressos</h4>
-            <p>Para Realizar a compra, utilizar o endpoint de /ingressos. No método POST /ingressos enviar as
-              informações básicas do
-              comprador e informar o DetalheShowId que contem as informações do show desejado para compra. Será
+            <p>Para Realizar a compra, utilizar o endpoint de /ingressos. No método POST /ingressos enviar o ID do usuário
+              e informar o DetalheShowId que contem as informações do show desejado para compra. Será
               realizado as seguintes
               validações.
             </p>
             <ul>
               <li>
-                CPF Comprador precisa ser válido.
-              </li>
-              <li>
-                Email do Comprador precisa ser válido
-              </li>
-              <li>
                 DetalheShowId do show precisa existir na base de dados.
               </li>
               <li>
                 Após a compra será atualizado a capacidade do DetalheShow comprado.
-              </li>
-              <li>
-                Não é permitido a compra do mesmo ingresso por CPF.
               </li>
               <li>
                 Não é permitido a compra de um ingresso com capacidade esgotada.
@@ -225,39 +231,13 @@
             <pre>
           <code class="html">
           {
-            "nome": "Joãosinho",
-            "email": "joasinho@hotmail.com",
-            "cpf": "11111111111",
-            "detalheShowId": 10
+            "detalheShowId": 12,
+            "idUsuario": 3
           }
             </code>
           </pre>
-            Após validações será retornado um 200 com o ingresso comprado com a seguinte estrutura:
-            <pre>
-                      <code class="html">
-          {
-            "id": 1,
-            "nome": "Joãosinho",
-            "email": "joasinho@hotmail.com",
-            "cpf": "11111111111",
-            "detalheShowId": 10
-          }
-            </code>
+            Após validações será retornado um statusCode de 200 compra realizada com sucesso.
           </pre>
-            <h4 id="deleteingressos">DELETE /ingressos/{ID}/{CPF}</h4>
-            <p>Para Realizar o cancelamento da compra, utilizar o endpoint de /ingressos. No método DELETE
-              /ingressos/1/11111111111 informar o
-              ID e o CPF do comprador do show que deseja cancelar.
-            <ul>
-              <li>
-                caso não exista o ingresso será retornado um STATUS 404.
-              </li>
-              <li>
-                caso de tudo OK será retornado um STATUS 200.
-              </li>
-            </ul>
-            </p>
-            </h4>
           </section>
 
           <hr class="divider">
@@ -279,19 +259,24 @@
             <pre>
             <code class="html">
             {
-              "id": 1,
-              "titulo": "AC/DC",
-              "data": "2021-12-29T00:00:00",
-              "detalheShows": {
-                "id": 1,
-                "tipoIngressoId": 1,
-                "capacidade": 10,
-                "valor": 1000,
-                "showDisponivel": "Sim"
-              }
-            }
+              "id": 62,
+              "titulo": "AC DC",
+              "data": "2021-10-27T00:00:00",
+              "detalheShows": [
+                {
+                  "id": 477,
+                  "capacidade": 121,
+                  "valor": 1231,
+                  "showDisponivel": true,
+                    "tipoIngresso": {
+                      "id": 145,
+                      "titulo": "CAMAROTE"
+                    }
+                  }
+                ]
+            },
               </code>
-            </pre>
+            </pre>            
 
             <h4 class="mt-5" id="getshowsid">GET /Shows/{ID}</h4>
             <p>
@@ -307,26 +292,28 @@
             <pre>
             <code class="html">
             {
-              "id": 1,
-              "titulo": "AC/DC",
-              "data": "2021-12-29T00:00:00",
-              "detalheShows": {
-                "id": 1,
-                "tipoIngressoId": 1,
-                "capacidade": 10,
-                "valor": 1000,
-                "showDisponivel": "Sim"
-              }
-            }
+              "id": 62,
+              "titulo": "AC DC",
+              "data": "2021-10-27T00:00:00",
+              "detalheShows": [
+                {
+                "id": 477,
+                "capacidade": 121,
+                "valor": 1231,
+                "showDisponivel": true,
+                  "tipoIngresso": {
+                    "id": 145,
+                    "titulo": "CAMAROTE"
+                  }
+                }
+              ]
+            },
               </code>
             </pre>
 
             <h4 id="postshows">POST /Shows</h4>
-            <p>Para cadastrar um novo show, utilizar o endpoint de /shows. No método POST /shows/{ID} informar as
-              propriedades
-              obrigatórias, caso ok, será retornado um Status 200 com o show criado. As seguintes propriedades são
-              obrigatórias para a
-              criação do mesmo.
+            <p>Para cadastrar um novo show, utilizar o endpoint de /Shows, informar as
+              propriedades Titulo e Data
             </p>
             <ul>
               <li>
@@ -334,28 +321,14 @@
               </li>
               <li>
                 Data Tipo do campo Datetime utilizar como exemplo '2021-12-25'.
-              </li>
-              <li>
-                DetalheShowId do show precisa existir na base de dados.
-              </li>
-              <li>
-                DetalheShow No Objeto DetalheShow é para detalhar as informações principais do ingresso, Capacidade,
-                valor e o
-                tipoIngressoId que cada ingresso pode conter até 3 tipos de ingresso sendo eles VIP - CAMAROTE - PISTA
-              </li>
+              </li>              
             </ul>
-            Exemplo para criar um novo shows:
+            Exemplo para criar um novo show:
             <pre>
             <code class="html">
           {
             "titulo": "Linkin Park",
             "data": "2021-11-22",
-            "detalheShows":
-            {
-              "capacidade": 50,
-              "valor": 3000.00,
-              "tipoingressoId": 1
-            }
           }
               </code>
             </pre>
@@ -363,19 +336,43 @@
             <pre>
             <code class="html">
             {
-              "id": 1,
-              "titulo": "Bee gees",
-              "data": "2021-12-23",
-              "detalheShows": {
-                "id": 1,
-                "tipoIngressoId": 1,
-                "capacidade": 100,
-                "valor": 250.00,
-                "showDisponivel": "Sim"
-               }
+              "result": {
+                "titulo": "Novo Show",
+                "data": "2021-10-27T00:00:00"
+              },
+              "statusCode": 200,
+              "message": "Operação realizada com sucesso."
             }
                         </code>
                       </pre>
+           
+            <h4 class="mt-5" id="putshows">PUT /Shows/{ID}</h4>
+            <p>
+              Para atualizar o show informar o ID do show a ser atualizado no parametro e as informações no body
+            </p>
+            <pre>
+            <code class="html">
+            {
+              "titulo": "Linkin Park",
+              "data": "2021-11-22"
+            }
+              </code>
+            </pre>
+            <li>
+              Caso não existe o ID do show será retornado o STATUS 404.
+            </li>
+            <li>
+              Caso de tudo OK será retornado o STATUS 200, com o seguinte response
+            </li>
+            
+            <pre>
+                <code class="html">
+                {
+                  "statusCode": 200,
+                  "message": "Show atualizado com sucesso."
+                }
+                  </code>
+            </pre>
             <h4 id="deleteshows">DELETE /Shows/{ID}</h4>
             <p>Para excluir o show, utilizar o endpoint de /shows. No método DELETE /shows/{ID} informar o ID do show
               que deseja
@@ -391,6 +388,70 @@
             </p>
           </section>
 
+              <h4 class="mt-5" id="getdetalheshowid">GET /Shows/DetalheShow{ID}</h4>
+              <p>
+                Para visualizar os DetalhesShow dos Shows, será utilizado essa rota, nele será retornado todos os DetalheShows do show escolhido
+              <ul>
+                <li>
+                  GET /Shows/DetalheShow/67
+                </li>
+              </ul>
+              </p>
+              <pre>
+              <code class="html">
+              [
+                {
+                  "id": 477,
+                  "capacidade": 121,
+                  "valor": 1231,
+                  "showDisponivel": true,
+                  "tipoIngresso": {
+                    "id": 145,
+                    "titulo": "CAMAROTE"
+                  }
+                }
+              ]
+                </code>
+              </pre>
+
+              <h4 id="postdetalheshow">POST /Shows/DetalheShow</h4>
+              <p>Nese Endpoint é cadastrado os detalheShows dos shows, em específico o ingresso do mesmo</p>
+              <ul>
+                <li>
+                  Capacidade do tipo INT.
+                </li>
+                <li>
+                  Valor do tipo decimal exemplo 599.90 .
+                </li>
+                <li>tipoIngressoId do tipo INT</li>
+                <li>showID do tipo INT</li>
+              </ul>
+              Exemplo para criar um novo detalheShow:
+              <pre>
+                          <code class="html">
+                        {
+                          "capacidade": 50,
+                          "valor": 299.50,
+                          "tipoIngressoId": 2,
+                          "showID": 9
+                        }
+                            </code>
+                          </pre>
+              Após validações será retornado um 200 com o detalheshow cadastrado com a seguinte estrutura:
+              <pre>
+                          <code class="html">
+                          {
+                            "result": {
+                              "id": 480,
+                              "capacidade": 10,
+                              "valor": 129.9,
+                              "showDisponivel": true,
+                            },
+                            "statusCode": 200,
+                            "message": "Operação realizada com sucesso."
+                          }
+                                      </code>
+                                    </pre>
           <hr class="divider">
 
           <!-- Endpoint Relatórios            
