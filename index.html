@@ -97,7 +97,7 @@
               </li>
               <li class="nav-item"><a class="nav-link" href="#relatorios">Relatórios</a>
                 <ul class="nav flex-column">
-                  <li class="nav-item"><a class="nav-link" href="#getrelatorios">GET /relatorios</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#getrelatorios">POST /relatorios</a></li>
                 </ul>
               </li>
             </ul>
@@ -148,28 +148,23 @@
 
           <section id="historico-revisao">
             <h2>Histórico de revisão</h2>
-            <p class="lead mb-1">Na versão 2.0 da API, foi realizado algumas modificações adicionado Endpoints e controle por autenticação via JWT </p>
-            <p class="lead mb-1"> <b>Login</b> </p>
-            <p class="lead mb-1"> <b>Usuários</b> </p>
-            <p class="lead mb-1"> <b>Tipo Usuários</b> </p>
-            <p class="lead mb-1"> <b>Ingressos</b> </p>
-            <p class="lead mb-1"> <b>Shows</b> </p>
-            <p class="lead mb-1"> <b>Tipo Ingressos</b> </p>
-            <p class="lead mb-1"> <b>Relatórios</b> </p>
+            <h3>Versão 2.0</h3>
+            <p class="lead mb-1">Na versão 2.0 da API, foi realizado algumas modificações adicionado controle por autenticação via JWT e adicionado alguns Endpoints, sendo eles: </p>
+            <p class="lead mb-5"> <b>Login</b> - <b>Usuários</b> - <b>Tipo Usuários</b> - <b>Ingressos</b> - <b>Shows</b> - <b>Tipo Ingressos</b> - <b>Relatórios</b> </p>
           </section>
 
 
           <section id="Endpoints">
-            <h2>Endpoints</h2>
+            <h3>Versão 1.0</h3>
             <p class="lead mb-5">Na versão 1.0 da API, é disponibilizado 3 endpoints <b>Ingressos</b> - <b>Shows</b> -
               <b>Relatórios</b>
-            </p>
+          
           </section>
 
 
           <section id="Login">
             <h2>Login</h2>
-            <p>No endpoint de Login é possível realizar a autenticação irá retornar o token JWT e os dados do usuário logado.</p>
+            <p>No endpoint de Login é possível realizar a autenticação irá gerar um token JWT sendo unico e os dados do usuário logado
 
             <!-- Róta POST Login-->
             <h4 id="postlogin">POST /Login</h4>
@@ -182,17 +177,39 @@
             }
                 </code>
             </pre>
+
+            <p>Exemplo de retorno:</p>
+            <pre>
+              <code class="html">
+                  {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjExMTExMTExMTExIiwianRpIjoiMDczNTIyMTMtNGJiYi00NDFjLWI2NTAtYzFlMGFmNjE0MTNjI
+                    iwibmFtZSI6IkNhaXF1ZSBRdWVpcm96Iiwic2lkIjoiNSIsInJvbGUiOiJBZG1pbmlzdHJhZG9yIiwibmJmIjoxNjM1MzgxOTE0LCJleHAiOjE2MzUzODI1MTQsImlhdCI6MTYzNTM4MTkxN
+                    CwiaXNzIjoiQXBpSW5ncmVzc29zSXNzdWVyIiwiYXVkIjoiQXBpSW5ncmVzc29zQXVkaWVuY2UifQ.b6ZRlef9nvqIa36SpA3Jrad0wZx91qX-x32bwglnyXI",
+                    "usuario": {
+                      "id": 5,
+                      "nome": "Joãosinho",
+                      "email": "joasinho@hotmail.com",
+                      "cpf": "11111111111",
+                      "tipoUsuario": {
+                        "id": 2,
+                        "titulo": "Comprador"
+                      }
+                    }
+                  }
+              </code>
+            </pre>
           </section>
 
 
 
           <section id="Ingressos">
             <h2>Ingressos</h2>
-            <p>No endpoint de ingresso é possível comprar, cancelar e listar as compras realizadas filtrando
-              por CPF, ou todas as compras realizadas.</p>
+            <p>No endpoint de ingresso é possível comprar e listar as compras realizadas. </p>
 
             <!-- Róta GET ingresos -->
-            <h4 id="getingressos">GET /ingressos</h4>
+            <h4 id="getingressos">GET /ingressos </h4>
+            <p>Rota protegida ['Administrador', 'Comprador']. Enviar no header Bearer o token JWT. </p>
+            <p>Quando usuário for do tipo Administrador, será retornado todos os ingressos comprados, de todos usuários, caso comprador, será retornado somente as compras vinculadas a seu CPF.</p>
             <p>Para visualizar todos os ingressos comprados de todas as pessoas, utilizar o endpoint de
               <b>/ingressos</b> podemos
               visualizar todos os ingressos comprados selecionando o método <b>GET /ingressos </b> será retornado um 200
@@ -211,6 +228,7 @@
             </pre>          
             <!-- Róta POST ingresos -->
             <h4 id="postingessos">POST /ingressos</h4>
+            <p>Rota protegida ['Administrador', 'Comprador']. Enviar no header Bearer o token JWT. </p>
             <p>Para Realizar a compra, utilizar o endpoint de /ingressos. No método POST /ingressos enviar o ID do usuário
               e informar o DetalheShowId que contem as informações do show desejado para compra. Será
               realizado as seguintes
@@ -249,6 +267,7 @@
             <p class="lead">No endpoint de shows é possível cadastrar, excluir, atualizar e listar os shows cadastrados.
             </p>
             <h4 class="mt-5" id="getshows">GET /Shows</h4>
+            <p>Rota protegida ['Administrador', 'Comprador']. Enviar no header Bearer o token JWT. </p>
             <p>
               Para visualizar todos os shows disponíveis utilizar o endpoint de /Shows podemos visualizar todos os shows
               disponíveis
@@ -279,6 +298,7 @@
             </pre>            
 
             <h4 class="mt-5" id="getshowsid">GET /Shows/{ID}</h4>
+            <p>Rota protegida ['Administrador', 'Comprador']. Enviar no header Bearer o token JWT. </p>
             <p>
               Para visualizar um show específico utilizar o endpoint de /shows. ao selecionar o método GET /Shows/{ID}
               será retornado
@@ -312,6 +332,7 @@
             </pre>
 
             <h4 id="postshows">POST /Shows</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
             <p>Para cadastrar um novo show, utilizar o endpoint de /Shows, informar as
               propriedades Titulo e Data
             </p>
@@ -347,6 +368,7 @@
                       </pre>
            
             <h4 class="mt-5" id="putshows">PUT /Shows/{ID}</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
             <p>
               Para atualizar o show informar o ID do show a ser atualizado no parametro e as informações no body
             </p>
@@ -374,6 +396,7 @@
                   </code>
             </pre>
             <h4 id="deleteshows">DELETE /Shows/{ID}</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
             <p>Para excluir o show, utilizar o endpoint de /shows. No método DELETE /shows/{ID} informar o ID do show
               que deseja
               cancelar, caso ok, será retornado um Status 200 confirmando a exclusão.
@@ -415,6 +438,7 @@
               </pre>
 
               <h4 id="postdetalheshow">POST /Shows/DetalheShow</h4>
+              <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
               <p>Nese Endpoint é cadastrado os detalheShows dos shows, em específico o ingresso do mesmo</p>
               <ul>
                 <li>
@@ -457,22 +481,28 @@
           <!-- Endpoint Relatórios            
 		============================ -->
           <section id="relatorios">
+            <p>Rota protegida ['Administrador', 'Comprador']. Enviar no header Bearer o token JWT. </p>
             <h2>Relatórios</h2>
             <p>
-              No Endpoint de relatórios, será utilizado apenas o método GET /Relatorios e será retornado uma listagem de
-              todas as
-              compras realizadas em planilha.
+              No Endpoint de relatórios, será utilizado apenas o método POST /Relatorios.
             </p>
 
-            <h4 id="getrelatorios">GET /Relatorios</h4>
-            <p>Será retornado um status 200 ok caso de certo, e a o caminho onde a planilha foi salva.</p>
+            <h4 id="getrelatorios">POST /Relatorios</h4>
+            <p>No body da requisição é possível filtrar por Pessoa e/ou shows ou tudo.</p>
 
+            <li>Campo <b>pessoa</b> do tipo string</li>
+            <li>Campo <b>show</b> do tipo string</li>
             <pre>
               <code>
-          Arquivo gerado com sucesso em C:\Users\caiqu\Documents\Treinamentos Desenvolvimento
-          Active\Testes\ProjetoIngressosAPI\ProjetoIngressosAPI\bin\Debug\netcoreapp3.1\\ListagemPessoasporShow.xlsx
+                {
+                  "pessoa": "string",
+                  "show": "string"
+                }
               </code>
             </pre>
+            <p>Nele será gerado a listagem em planilha com o filtro desejado, caso envie os filtros em brancos, será retornado todos os shows. sendo:</p>
+            <li>Usuário Administrador vai ser retornado as compras de todos os usuários.</li>
+            <li>Usuário Comprador somente as compras realizadas.</li>
 
             <hr class="divider">
 
