@@ -93,6 +93,25 @@
                   <li class="nav-item"><a class="nav-link" href="#deleteshows">DELETE /Shows/ID</a></li>
                   <li class="nav-item"><a class="nav-link" href="#getdetalheshowid">GET /DetalheShow/ID</a></li>
                   <li class="nav-item"><a class="nav-link" href="#postdetalheshow">POST /DetalheShow</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#deletedetalheshow">DELETE /DetalheShow</a></li>
+                </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="#TipoIngressos">TipoIngressos</a>
+                <ul class="nav flex-column">
+                  <li class="nav-item"><a class="nav-link" href="#gettipoingressos">GET /TipoIngressos</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#gettipoingressosid">GET /TipoIngressos/id</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#posttipoingressos">POST /TipoIngressos</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#puttipoingressos">PUT /TipoIngressos/ID</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#deletetipoingressos">DELETE /TipoIngressos</a></li>
+                </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="#Usuarios">Usuarios</a>
+                <ul class="nav flex-column">
+                  <li class="nav-item"><a class="nav-link" href="#getusuarios">GET /Usuarios</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#getusuariosid">GET /Usuarios/id</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#postusuarios">POST /Usuarios</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#putusuarios">PUT /Usuarios/ID</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#deleteusuarios">DELETE /Usuarios</a></li>
                 </ul>
               </li>
               <li class="nav-item"><a class="nav-link" href="#relatorios">Relatórios</a>
@@ -264,8 +283,7 @@
 		============================ -->
           <section id="Shows">
             <h2>Shows</h2>
-            <p class="lead">No endpoint de shows é possível cadastrar, excluir, atualizar e listar os shows cadastrados.
-            </p>
+            <p class="lead">No endpoint de shows é possível cadastrar, excluir, atualizar e listar os shows cadastrados.</p>
             <h4 class="mt-5" id="getshows">GET /Shows</h4>
             <p>Rota protegida ['Administrador', 'Comprador']. Enviar no header Bearer o token JWT. </p>
             <p>
@@ -408,101 +426,429 @@
                 caso de tudo OK será retornado um STATUS 200.
               </li>
             </ul>
-            </p>
+            </p>          
+        <h4 class="mt-5" id="getdetalheshowid">GET /Shows/DetalheShow{ID}</h4>
+        <p>
+          Para visualizar os DetalhesShow dos Shows, será utilizado essa rota, nele será retornado todos os DetalheShows do show
+          escolhido
+        <ul>
+          <li>
+            GET /Shows/DetalheShow/67
+          </li>
+        </ul>
+        </p>
+        <pre>
+                      <code class="html">
+                      [
+                        {
+                          "id": 477,
+                          "capacidade": 121,
+                          "valor": 1231,
+                          "showDisponivel": true,
+                          "tipoIngresso": {
+                            "id": 145,
+                            "titulo": "CAMAROTE"
+                          }
+                        }
+                      ]
+                        </code>
+                      </pre>
+        
+        <h4 id="postdetalheshow">POST /Shows/DetalheShow</h4>
+        <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+        <p>Nese Endpoint é cadastrado os detalheShows dos shows, em específico o ingresso do mesmo</p>
+        <ul>
+          <li>
+            Capacidade do tipo INT.
+          </li>
+          <li>
+            Valor do tipo decimal exemplo 599.90 .
+          </li>
+          <li>tipoIngressoId do tipo INT</li>
+          <li>showID do tipo INT</li>
+        </ul>
+        Exemplo para criar um novo detalheShow:
+        <pre>
+                                  <code class="html">
+                                {
+                                  "capacidade": 50,
+                                  "valor": 299.50,
+                                  "tipoIngressoId": 2,
+                                  "showID": 9
+                                }
+                                    </code>
+                                  </pre>
+        Após validações será retornado um 200 com o detalheshow cadastrado com a seguinte estrutura:
+        <pre>
+                                  <code class="html">
+                                  {
+                                    "result": {
+                                      "id": 480,
+                                      "capacidade": 10,
+                                      "valor": 129.9,
+                                      "showDisponivel": true,
+                                    },
+                                    "statusCode": 200,
+                                    "message": "Operação realizada com sucesso."
+                                  }
+                                              </code>
+                                            </pre>
+        
+                                            <h4 id="deletedetalheshow">DELETE /Shows/DetalheShow{ID}</h4>
+                                            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+                                            <p>Para excluir o DetalheShow, utilizar o endpoint de /Shows/DetalheShow. No método DELETE /Shows/DetalheShow/{ID}
+                                              informar o ID do Detalheshow
+                                              que deseja cancelar, caso ok, será retornado um Status 200 confirmando a exclusão.
+                                            <ul>
+                                              <li>
+                                                caso não exista o ID detalheShow será retornado um STATUS 404.
+                                              </li>
+                                              <li>
+                                                Não é possível deletar um detalheShow que ja foi comprado.
+                                              </li>
+                                              <li>
+                                                caso de tudo OK será retornado um STATUS 200.
+                                              </li>
+                                            </ul>
+                                            </p>
           </section>
 
-              <h4 class="mt-5" id="getdetalheshowid">GET /Shows/DetalheShow{ID}</h4>
+          <hr class="divider">
+
+
+          <!-- Endpoint Tipo Ingresso -->
+          <section id="TipoIngressos">
+              <h2>Tipo Ingressos</h2>
+              <p class="lead">No endpoint de TipoIngressos é possível cadastrar, excluir, atualizar e listar os TipoIngressos cadastrados.</p>
+
+              <h4 class="mt-5" id="gettipoingressos">GET /TipoIngressos</h4>
+              <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
               <p>
-                Para visualizar os DetalhesShow dos Shows, será utilizado essa rota, nele será retornado todos os DetalheShows do show escolhido
+                Para visualizar todos os TipoIngressos disponíveis utilizar o endpoint de /TipoIngressos podemos visualizar todos os Tipos de ingressos
+                disponíveis, segue exemplo:
+              </p>
+              <pre>
+                          <code class="html">
+                        [
+                          {
+                            "id": 2,
+                            "titulo": "VIP"
+                          },
+                          {
+                            "id": 145,
+                            "titulo": "CAMAROTE"
+                          },
+                          {
+                            "id": 148,
+                            "titulo": "PISTA"
+                          }
+                        ]
+                            </code>
+                          </pre>
+              
+              <h4 class="mt-5" id="gettipoingressosid">GET /TipoIngressos/{ID}</h4>
+              <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+              <p>
+                Para visualizar um Tipo de ingressos específico utilizar o endpoint de /TipoIngressos/ID. ao selecionar o método GET /TipoIngressos/{ID}
+                será retornado
+                Status 200 com o Tipo de ingresso. Assim como o exemplo a seguir:
               <ul>
                 <li>
-                  GET /Shows/DetalheShow/67
+                  GET /TipoIngressos/2
                 </li>
               </ul>
               </p>
               <pre>
-              <code class="html">
-              [
-                {
-                  "id": 477,
-                  "capacidade": 121,
-                  "valor": 1231,
-                  "showDisponivel": true,
-                  "tipoIngresso": {
-                    "id": 145,
-                    "titulo": "CAMAROTE"
-                  }
-                }
-              ]
-                </code>
-              </pre>
-
-              <h4 id="postdetalheshow">POST /Shows/DetalheShow</h4>
-              <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
-              <p>Nese Endpoint é cadastrado os detalheShows dos shows, em específico o ingresso do mesmo</p>
-              <ul>
-                <li>
-                  Capacidade do tipo INT.
-                </li>
-                <li>
-                  Valor do tipo decimal exemplo 599.90 .
-                </li>
-                <li>tipoIngressoId do tipo INT</li>
-                <li>showID do tipo INT</li>
-              </ul>
-              Exemplo para criar um novo detalheShow:
-              <pre>
                           <code class="html">
-                        {
-                          "capacidade": 50,
-                          "valor": 299.50,
-                          "tipoIngressoId": 2,
-                          "showID": 9
-                        }
+                            {
+                              "id": 2,
+                              "titulo": "VIP"
+                            }
                             </code>
                           </pre>
-              Após validações será retornado um 200 com o detalheshow cadastrado com a seguinte estrutura:
+              
+              <h4 id="posttipoingressos">POST /TipoIngressos</h4>
+              <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+              <p>Para cadastrar um novo tipo de ingresso, utilizar o endpoint de /TipoIngresso, informar a
+                propriedades Titulo
+              </p>
+              <ul>
+                <li>
+                  Titulo Precisa ser uma string.
+                </li>
+              </ul>
+              Exemplo para criar um novo Tipo de ingresso:
+              <pre>
+                          <code class="html">
+                            {
+                              "titulo": "novo tipo de ingresso",
+                            }
+                            </code>
+              </pre>
+              Após validações será retornado um 200 com o tipo de ingresso cadastrado com a seguinte estrutura:
+              <pre>
+                          <code class="html">
+                            {
+                              "id": 150,
+                              "titulo": "novo tipo de ingresso"
+                            }
+                            </code>
+              </pre>
+              
+              <h4 class="mt-5" id="puttipoingressos">PUT /TipoIngressos/{ID}</h4>
+              <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+              <p>
+                Para atualizar o tipo de ingresso informar o ID do tipo de ingresso a ser atualizado no parametro e as informações no body
+              </p>
               <pre>
                           <code class="html">
                           {
-                            "result": {
-                              "id": 480,
-                              "capacidade": 10,
-                              "valor": 129.9,
-                              "showDisponivel": true,
-                            },
-                            "statusCode": 200,
-                            "message": "Operação realizada com sucesso."
+                            "titulo": "Tipo de ingresso alterado",
                           }
-                                      </code>
-                                    </pre>
+                            </code>
+                          </pre>
+              <li>
+                Caso não existe o ID do tipo de ingresso será retornado o STATUS 404.
+              </li>
+              <li>
+                Caso de tudo OK será retornado o STATUS 200, com o seguinte response
+              </li>
+              
+              <pre>
+                    <code class="html">
+                    {
+                      "statusCode": 200,
+                      "message": "tipo de ingresso atualizado com sucesso."
+                    }
+                      </code>
+              </pre>
+              <h4 id="deletetipoingressos">DELETE /TipoIngressos/{ID}</h4>
+              <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+              <p>Para excluir o tipo de ingresso, utilizar o endpoint de /TipoIngressos. No método DELETE /TipoIngressos/{ID} informar o ID do tipo de ingresso
+                que deseja
+                cancelar, caso ok, será retornado um Status 200 confirmando a exclusão.
+              <ul>
+                <li>
+                  caso não exista o ingresso será retornado um STATUS 404.
+                </li>
+                <li>
+                  caso de tudo OK será retornado um STATUS 200.
+                </li>
+                <pre>
+                      <code class="html">
+                      {
+                        "statusCode": 200,
+                        "message": "tipo de ingresso deletado com sucesso."
+                      }
+                        </code>
+                </pre>
+              </ul>
+              </p>
+          </section>
+
           <hr class="divider">
 
+
+<!-- Endpoint Usuarios -->
+<section id="Usuarios">
+  <h2>Usuarios</h2>
+  <p class="lead">No endpoint de Usuarios é possível cadastrar, excluir, atualizar e listar os usuarios cadastrados
+    cadastrados.</p>
+
+  <h4 class="mt-5" id="getusuarios">GET /Usuarios</h4>
+  <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+  <p>
+    Para visualizar todos os Usuarios disponíveis utilizar o endpoint de /Usuarios podemos visualizar todos os
+    usuarios disponíveis, segue exemplo:
+  </p>
+  <pre>
+                          <code class="html">
+                        [
+                          {
+                            "id": 5,
+                            "nome": "Caique Queiroz",
+                            "email": "caiqueonisto@live.com",
+                            "cpf": "11111111111",
+                            "tipoUsuario": {
+                              "id": 1,
+                              "titulo": "Administrador"
+                              }
+                            },
+                            {
+                              "id": 17,
+                              "nome": "Administrador",
+                              "email": "administrador@projetoingressos.com",
+                              "cpf": "44444444444",
+                              "tipoUsuario": {
+                                "id": 1,
+                                "titulo": "Administrador"
+                              }
+                            },
+                            {
+                              "id": 22,
+                              "nome": "comprador",
+                              "email": "comprador@comprador.com",
+                              "cpf": "33333333333",
+                              "tipoUsuario": {
+                                "id": 2,
+                                "titulo": "Comprador"
+                            }
+                          }
+                        ]
+                            </code>
+                          </pre>
+
+  <h4 class="mt-5" id="getusuariosid">GET /Usuarios/{ID}</h4>
+  <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+  <p>
+    Para visualizar um Usuário específico utilizar o endpoint de /Usuarios/ID. ao selecionar o método GET
+    /Usuarios/{ID}
+    será retornado
+    Status 200 com o Usuário. Assim como o exemplo a seguir:
+  <ul>
+    <li>
+      GET /Usuarios/5
+    </li>
+  </ul>
+  </p>
+  <pre>
+                          <code class="html">
+                            {
+                              "id": 5,
+                              "nome": "Caique Queiroz",
+                              "email": "caiqueonisto@live.com",
+                              "cpf": "11111111111",
+                              "tipoUsuario": {
+                                "id": 1,
+                                "titulo": "Administrador"
+                              }
+                            },
+                            </code>
+                          </pre>
+
+  <h4 id="postusuarios">POST /Usuarios</h4>
+  <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+  <p>Para cadastrar um novo usuário, utilizar o endpoint de /Usuarios, informar as seguintes propriedades    
+  </p>
+  <ul>
+    <li>Nome Precisa ser uma string.</li>
+    <li>Email precisa ser string e um e-mail válido</li>
+    <li>CPF enviar como uma string e um CPF válido, exemplo "1111111111"</li>
+    <li>Senha ums string de até 100 caractéres</li>
+    <li>Tipousuarioid do tipo INT precisa constar no banco, caso não exista será retornado um 404</li>
+  </ul>
+  Exemplo para criar um novo Usuário:
+  <pre>
+                          <code class="html">
+                            {
+                              "nome": "Joãosinho",
+                              "email": "joaosinho@hotmail.com",
+                              "cpf": "55555555555",
+                              "senha": "123456789",
+                              "tipoUsuarioId": 2
+                            }
+                            </code>
+              </pre>
+  Após validações será retornado um 200 com o usuario cadastrado com a seguinte estrutura:
+  <pre>
+                          <code class="html">
+                            {
+                              "result": {
+                                "id": 24,
+                                "nome": "Joãosinho",
+                                "email": "joaosinho@hotmail.com",
+                                "cpf": "55555555555",
+                              },
+                              "statusCode": 200,
+                              "message": "Operação realizada com sucesso."
+                            }
+                            </code>
+              </pre>
+
+  <h4 class="mt-5" id="putusuarios">PUT /Usuario/{ID}</h4>
+  <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+  <p>
+    Para atualizar o usuario informar o ID do usuario a ser atualizado no parametro e as informações
+    no body
+  </p>
+  <pre>
+                          <code class="html">
+                            {
+                              "nome": "Joãosinho",
+                              "email": "joaosinho@hotmail.com",
+                              "cpf": "55555555555",
+                              "senha": "987654321",
+                              "tipoUsuarioId": 2
+                            }
+                            </code>
+                          </pre>
+  <li>
+    Caso não existe o ID do tipo de usuario será retornado o STATUS 404.
+  </li>
+  <li>
+    Caso de tudo OK será retornado o STATUS 200.
+  </li>
+
+  <h4 id="deleteusuarios">DELETE /Usuarios/{ID}</h4>
+  <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+  <p>Para excluir o Usuário, utilizar o endpoint de /Usuarios. No método DELETE /Usuarios/{ID}
+    informar o ID do usuario
+    que deseja
+    cancelar, caso ok, será retornado um Status 200 confirmando a exclusão.
+  <ul>
+    <li>
+      caso não exista o usuario será retornado um STATUS 404.
+    </li>
+    <li>
+      caso de tudo OK será retornado um STATUS 200.
+    </li>
+    <pre>
+                      <code class="html">
+                      {
+                        "statusCode": 200,
+                        "message": "Usuário deletado com sucesso."
+                      }
+                        </code>
+                </pre>
+  </ul>
+  </p>
+</section>
+
+
+
+
+
+
+
+
+
+
           <!-- Endpoint Relatórios            
-		============================ -->
+============================ -->
           <section id="relatorios">
-            <p>Rota protegida ['Administrador', 'Comprador']. Enviar no header Bearer o token JWT. </p>
             <h2>Relatórios</h2>
             <p>
               No Endpoint de relatórios, será utilizado apenas o método POST /Relatorios.
             </p>
-
+            
             <h4 id="getrelatorios">POST /Relatorios</h4>
-            <p>No body da requisição é possível filtrar por Pessoa e/ou shows ou tudo.</p>
+              <p>Rota protegida ['Administrador', 'Comprador']. Enviar no header Bearer o token JWT. </p>
+              <p>No body da requisição é possível filtrar por Pessoa e/ou shows ou tudo.</p>
 
-            <li>Campo <b>pessoa</b> do tipo string</li>
-            <li>Campo <b>show</b> do tipo string</li>
-            <pre>
-              <code>
-                {
-                  "pessoa": "string",
-                  "show": "string"
-                }
-              </code>
-            </pre>
-            <p>Nele será gerado a listagem em planilha com o filtro desejado, caso envie os filtros em brancos, será retornado todos os shows. sendo:</p>
-            <li>Usuário Administrador vai ser retornado as compras de todos os usuários.</li>
-            <li>Usuário Comprador somente as compras realizadas.</li>
+              <li>Campo <b>pessoa</b> do tipo string</li>
+              <li>Campo <b>show</b> do tipo string</li>
+              <pre>
+                <code>
+                  {
+                    "pessoa": "string",
+                    "show": "string"
+                  }
+                </code>
+              </pre>
+              <p>Nele será gerado a listagem em planilha com o filtro desejado, caso envie os filtros em brancos, será retornado todos os shows. sendo:</p>
+              <li>Usuário Administrador vai ser retornado as compras de todos os usuários.</li>
+              <li>Usuário Comprador somente as compras realizadas.</li>
+          </section>
 
             <hr class="divider">
 
