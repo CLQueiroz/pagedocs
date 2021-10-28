@@ -200,7 +200,7 @@
             <pre>
                 <code class="html">
             {
-              "email": "joasinho@hotmail.com",
+              "email": "joaosinho@hotmail.com",
               "senha": "11111111111"
             }
                 </code>
@@ -216,7 +216,7 @@
                     "usuario": {
                       "id": 5,
                       "nome": "Joãosinho",
-                      "email": "joasinho@hotmail.com",
+                      "email": "joaosinho@hotmail.com",
                       "cpf": "11111111111",
                       "tipoUsuario": {
                         "id": 2,
@@ -298,9 +298,7 @@
             <p>
               Para visualizar todos os shows disponíveis utilizar o endpoint de /Shows podemos visualizar todos os shows
               disponíveis
-              para compra no método GET /shows será retornado um Status 200 com todos os shows cadastrados(Ja existe
-              cadastrado uma lista
-              com 10 shows disponíveis). Assim como o exemplo a seguir:
+              para compra no método GET /shows será retornado um Status 200 com todos os shows cadastrados. Assim como o exemplo a seguir:
             </p>
             <pre>
             <code class="html">
@@ -437,6 +435,7 @@
             </ul>
             </p>          
         <h4 class="mt-5" id="getdetalheshowid">GET /Shows/DetalheShow/{ID}</h4>
+        <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
         <p>
           Para visualizar os DetalhesShow dos Shows, será utilizado essa rota, nele será retornado todos os DetalheShows do show
           escolhido. O ID do parametro da rota é o Id do show          
