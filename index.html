@@ -114,8 +114,17 @@
                   <li class="nav-item"><a class="nav-link" href="#deleteusuarios">DELETE /Usuarios</a></li>
                 </ul>
               </li>
-              <li class="nav-item"><a class="nav-link" href="#relatorios">Relatórios</a>
+              <li class="nav-item"><a class="nav-link" href="#TipoUsuarios">TipoUsuarios</a>
                 <ul class="nav flex-column">
+                  <li class="nav-item"><a class="nav-link" href="#gettipousuarios">GET /TipoUsuarios</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#gettipousuariosid">GET /TipoUsuarios/id</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#posttipousuarios">POST /TipoUsuarios</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#puttipousuarios">PUT /TipoUsuarios/ID</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#deletetipousuarios">DELETE /TipoUsuarios</a></li>
+                </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="#relatorios">Relatórios</a>
+                <ul class="nav flex-column">v
                   <li class="nav-item"><a class="nav-link" href="#getrelatorios">POST /relatorios</a></li>
                 </ul>
               </li>
@@ -649,176 +658,306 @@
           <hr class="divider">
 
 
-<!-- Endpoint Usuarios -->
-<section id="Usuarios">
-  <h2>Usuarios</h2>
-  <p class="lead">No endpoint de Usuarios é possível cadastrar, excluir, atualizar e listar os usuarios cadastrados
-    cadastrados.</p>
+          <!-- Endpoint Usuarios -->
+          <section id="Usuarios">
+            <h2>Usuarios</h2>
+            <p class="lead">No endpoint de Usuarios é possível cadastrar, excluir, atualizar e listar os usuarios cadastrados
+              cadastrados.</p>
 
-  <h4 class="mt-5" id="getusuarios">GET /Usuarios</h4>
-  <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
-  <p>
-    Para visualizar todos os Usuarios disponíveis utilizar o endpoint de /Usuarios podemos visualizar todos os
-    usuarios disponíveis, segue exemplo:
-  </p>
-  <pre>
-                          <code class="html">
-                        [
-                          {
-                            "id": 5,
-                            "nome": "Caique Queiroz",
-                            "email": "caiqueonisto@live.com",
-                            "cpf": "11111111111",
-                            "tipoUsuario": {
-                              "id": 1,
-                              "titulo": "Administrador"
-                              }
-                            },
-                            {
-                              "id": 17,
-                              "nome": "Administrador",
-                              "email": "administrador@projetoingressos.com",
-                              "cpf": "44444444444",
-                              "tipoUsuario": {
-                                "id": 1,
-                                "titulo": "Administrador"
-                              }
-                            },
-                            {
-                              "id": 22,
-                              "nome": "comprador",
-                              "email": "comprador@comprador.com",
-                              "cpf": "33333333333",
-                              "tipoUsuario": {
-                                "id": 2,
-                                "titulo": "Comprador"
-                            }
-                          }
-                        ]
-                            </code>
+            <h4 class="mt-5" id="getusuarios">GET /Usuarios</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+            <p>
+              Para visualizar todos os Usuarios disponíveis utilizar o endpoint de /Usuarios podemos visualizar todos os
+              usuarios disponíveis, segue exemplo:
+            </p>
+            <pre>
+                                    <code class="html">
+                                  [
+                                    {
+                                      "id": 5,
+                                      "nome": "Caique Queiroz",
+                                      "email": "caiqueonisto@live.com",
+                                      "cpf": "11111111111",
+                                      "tipoUsuario": {
+                                        "id": 1,
+                                        "titulo": "Administrador"
+                                        }
+                                      },
+                                      {
+                                        "id": 17,
+                                        "nome": "Administrador",
+                                        "email": "administrador@projetoingressos.com",
+                                        "cpf": "44444444444",
+                                        "tipoUsuario": {
+                                          "id": 1,
+                                          "titulo": "Administrador"
+                                        }
+                                      },
+                                      {
+                                        "id": 22,
+                                        "nome": "comprador",
+                                        "email": "comprador@comprador.com",
+                                        "cpf": "33333333333",
+                                        "tipoUsuario": {
+                                          "id": 2,
+                                          "titulo": "Comprador"
+                                      }
+                                    }
+                                  ]
+                                      </code>
+                                    </pre>
+
+            <h4 class="mt-5" id="getusuariosid">GET /Usuarios/{ID}</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+            <p>
+              Para visualizar um Usuário específico utilizar o endpoint de /Usuarios/ID. ao selecionar o método GET
+              /Usuarios/{ID}
+              será retornado
+              Status 200 com o Usuário. Assim como o exemplo a seguir:
+            <ul>
+              <li>
+                GET /Usuarios/5
+              </li>
+            </ul>
+            </p>
+            <pre>
+                                    <code class="html">
+                                      {
+                                        "id": 5,
+                                        "nome": "Caique Queiroz",
+                                        "email": "caiqueonisto@live.com",
+                                        "cpf": "11111111111",
+                                        "tipoUsuario": {
+                                          "id": 1,
+                                          "titulo": "Administrador"
+                                        }
+                                      },
+                                      </code>
+                                    </pre>
+
+            <h4 id="postusuarios">POST /Usuarios</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+            <p>Para cadastrar um novo usuário, utilizar o endpoint de /Usuarios, informar as seguintes propriedades    
+            </p>
+            <ul>
+              <li>Nome Precisa ser uma string.</li>
+              <li>Email precisa ser string e um e-mail válido</li>
+              <li>CPF enviar como uma string e um CPF válido, exemplo "1111111111"</li>
+              <li>Senha ums string de até 100 caractéres</li>
+              <li>Tipousuarioid do tipo INT precisa constar no banco, caso não exista será retornado um 404</li>
+            </ul>
+            Exemplo para criar um novo Usuário:
+            <pre>
+                                    <code class="html">
+                                      {
+                                        "nome": "Joãosinho",
+                                        "email": "joaosinho@hotmail.com",
+                                        "cpf": "55555555555",
+                                        "senha": "123456789",
+                                        "tipoUsuarioId": 2
+                                      }
+                                      </code>
+                        </pre>
+            Após validações será retornado um 200 com o usuario cadastrado com a seguinte estrutura:
+            <pre>
+                                    <code class="html">
+                                      {
+                                        "result": {
+                                          "id": 24,
+                                          "nome": "Joãosinho",
+                                          "email": "joaosinho@hotmail.com",
+                                          "cpf": "55555555555",
+                                        },
+                                        "statusCode": 200,
+                                        "message": "Operação realizada com sucesso."
+                                      }
+                                      </code>
+                        </pre>
+
+            <h4 class="mt-5" id="putusuarios">PUT /Usuario/{ID}</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+            <p>
+              Para atualizar o usuario informar o ID do usuario a ser atualizado no parametro e as informações
+              no body
+            </p>
+            <li>
+              Caso não existe o ID do tipo de usuario será retornado o STATUS 404.
+            </li>
+            <li>
+              Caso de tudo OK será retornado o STATUS 200.
+            </li>
+            <pre>
+                                    <code class="html">
+                                      {
+                                        "nome": "Joãosinho",
+                                        "email": "joaosinho@hotmail.com",
+                                        "cpf": "55555555555",
+                                        "senha": "987654321",
+                                        "tipoUsuarioId": 2
+                                      }
+                                      </code>
+                                    </pre>
+
+            <h4 id="deleteusuarios">DELETE /Usuarios/{ID}</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+            <p>Para excluir o Usuário, utilizar o endpoint de /Usuarios. No método DELETE /Usuarios/{ID}
+              informar o ID do usuario
+              que deseja
+              cancelar, caso ok, será retornado um Status 200 confirmando a exclusão.
+            <ul>
+              <li>
+                caso não exista o usuario será retornado um STATUS 404.
+              </li>
+              <li>
+                caso de tudo OK será retornado um STATUS 200.
+              </li>
+              <pre>
+                                <code class="html">
+                                {
+                                  "statusCode": 200,
+                                  "message": "Usuário deletado com sucesso."
+                                }
+                                  </code>
                           </pre>
+            </ul>
+            </p>
+          </section>
 
-  <h4 class="mt-5" id="getusuariosid">GET /Usuarios/{ID}</h4>
-  <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
-  <p>
-    Para visualizar um Usuário específico utilizar o endpoint de /Usuarios/ID. ao selecionar o método GET
-    /Usuarios/{ID}
-    será retornado
-    Status 200 com o Usuário. Assim como o exemplo a seguir:
-  <ul>
-    <li>
-      GET /Usuarios/5
-    </li>
-  </ul>
-  </p>
-  <pre>
-                          <code class="html">
-                            {
-                              "id": 5,
-                              "nome": "Caique Queiroz",
-                              "email": "caiqueonisto@live.com",
-                              "cpf": "11111111111",
-                              "tipoUsuario": {
-                                "id": 1,
-                                "titulo": "Administrador"
+          <hr class="divider">
+          
+          <!-- Endpoint Tipo Usuários -->
+          <section id="TipoUsuarios">
+            <h2>Tipo Usuarios</h2>
+            <p class="lead">No endpoint de TipoUsuarios é possível cadastrar, excluir, atualizar e listar os TipoUsuarios
+              cadastrados.</p>
+
+            <h4 class="mt-5" id="gettipousuarios">GET /TipoUsuarios</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+            <p>
+              Para visualizar todos os TipoUsuarios disponíveis utilizar o endpoint de /TipoUsuarios podemos visualizar todos os
+              Tipos de Usuarios
+              disponíveis, segue exemplo:
+            </p>
+            <pre>
+                                    <code class="html">
+                                  [
+                                    {
+                                      "id": 1,
+                                      "titulo": "Administrador"
+                                    },
+                                    {
+                                      "id": 2,
+                                      "titulo": "Comprador"
+                                    }
+                                  ]
+                                      </code>
+                                    </pre>
+
+            <h4 class="mt-5" id="gettipousuariosid">GET /TipoUsuarios/{ID}</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+            <p>
+              Para visualizar um Tipo de usuario específico utilizar o endpoint de /TipoUsuarios/ID. ao selecionar o método GET
+              /TipoUsuarios/{ID}
+              será retornado
+              Status 200 com o Tipo de usuario. Assim como o exemplo a seguir:
+            <ul>
+              <li>
+                GET /TipoUsuarios/2
+              </li>
+            </ul>
+            </p>
+            <pre>
+                                    <code class="html">
+                                      {
+                                        "id": 2,
+                                        "titulo": "Comprador"
+                                      }
+                                      </code>
+                                    </pre>
+
+            <h4 id="posttipousuarios">POST /TipoUsuarios</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+            <p>Para cadastrar um novo tipo de usuario, utilizar o endpoint de /TipoUsuarios, informar a
+              propriedades Titulo
+            </p>
+            <ul>
+              <li>
+                Titulo Precisa ser uma string.
+              </li>
+            </ul>
+            Exemplo para criar um novo Tipo de ingresso:
+            <pre>
+                                    <code class="html">
+                                      {
+                                        "titulo": "novo tipo de usuario",
+                                      }
+                                      </code>
+                        </pre>
+            Após validações será retornado um 200 com o tipo de usuario cadastrado com a seguinte estrutura:
+            <pre>
+                                    <code class="html">
+                                      {
+                                        "id": 3,
+                                        "titulo": "novo tipo de usuario"
+                                      }
+                                      </code>
+                        </pre>
+
+            <h4 class="mt-5" id="puttipousuarios">PUT /TipoUsuarios/{ID}</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+            <p>
+              Para atualizar o tipo de usuario informar o ID do tipo de usuario a ser atualizado no parametro e as informações
+              no body
+            </p>
+            <pre>
+                                    <code class="html">
+                                    {
+                                      "titulo": "Tipo de usuario alterado",
+                                    }
+                                      </code>
+                                    </pre>
+            <li>
+              Caso não existe o ID do tipo de usuario será retornado o STATUS 404.
+            </li>
+            <li>
+              Caso de tudo OK será retornado o STATUS 200, com o seguinte response
+            </li>
+
+            <pre>
+                              <code class="html">
+                              {
+                                "statusCode": 200,
+                                "message": "tipo de usuario atualizado com sucesso."
                               }
-                            },
-                            </code>
+                                </code>
+                        </pre>
+            <h4 id="deletetipousuarios">DELETE /TipoUsuarios/{ID}</h4>
+            <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
+            <p>Para excluir o tipo de usuario, utilizar o endpoint de /TipoUsuarios. No método DELETE /TipoUsuarios/{ID}
+              informar o ID do tipo de usuario
+              que deseja
+              cancelar, caso ok, será retornado um Status 200 confirmando a exclusão.
+            <ul>
+              <li>
+                caso não exista o tipo de usuario será retornado um STATUS 404.
+              </li>
+              <li>
+                caso de tudo OK será retornado um STATUS 200.
+              </li>
+              <pre>
+                                <code class="html">
+                                {
+                                  "statusCode": 200,
+                                  "message": "tipo de usuario deletado com sucesso."
+                                }
+                                  </code>
                           </pre>
-
-  <h4 id="postusuarios">POST /Usuarios</h4>
-  <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
-  <p>Para cadastrar um novo usuário, utilizar o endpoint de /Usuarios, informar as seguintes propriedades    
-  </p>
-  <ul>
-    <li>Nome Precisa ser uma string.</li>
-    <li>Email precisa ser string e um e-mail válido</li>
-    <li>CPF enviar como uma string e um CPF válido, exemplo "1111111111"</li>
-    <li>Senha ums string de até 100 caractéres</li>
-    <li>Tipousuarioid do tipo INT precisa constar no banco, caso não exista será retornado um 404</li>
-  </ul>
-  Exemplo para criar um novo Usuário:
-  <pre>
-                          <code class="html">
-                            {
-                              "nome": "Joãosinho",
-                              "email": "joaosinho@hotmail.com",
-                              "cpf": "55555555555",
-                              "senha": "123456789",
-                              "tipoUsuarioId": 2
-                            }
-                            </code>
-              </pre>
-  Após validações será retornado um 200 com o usuario cadastrado com a seguinte estrutura:
-  <pre>
-                          <code class="html">
-                            {
-                              "result": {
-                                "id": 24,
-                                "nome": "Joãosinho",
-                                "email": "joaosinho@hotmail.com",
-                                "cpf": "55555555555",
-                              },
-                              "statusCode": 200,
-                              "message": "Operação realizada com sucesso."
-                            }
-                            </code>
-              </pre>
-
-  <h4 class="mt-5" id="putusuarios">PUT /Usuario/{ID}</h4>
-  <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
-  <p>
-    Para atualizar o usuario informar o ID do usuario a ser atualizado no parametro e as informações
-    no body
-  </p>
-  <li>
-    Caso não existe o ID do tipo de usuario será retornado o STATUS 404.
-  </li>
-  <li>
-    Caso de tudo OK será retornado o STATUS 200.
-  </li>
-  <pre>
-                          <code class="html">
-                            {
-                              "nome": "Joãosinho",
-                              "email": "joaosinho@hotmail.com",
-                              "cpf": "55555555555",
-                              "senha": "987654321",
-                              "tipoUsuarioId": 2
-                            }
-                            </code>
-                          </pre>
-
-  <h4 id="deleteusuarios">DELETE /Usuarios/{ID}</h4>
-  <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
-  <p>Para excluir o Usuário, utilizar o endpoint de /Usuarios. No método DELETE /Usuarios/{ID}
-    informar o ID do usuario
-    que deseja
-    cancelar, caso ok, será retornado um Status 200 confirmando a exclusão.
-  <ul>
-    <li>
-      caso não exista o usuario será retornado um STATUS 404.
-    </li>
-    <li>
-      caso de tudo OK será retornado um STATUS 200.
-    </li>
-    <pre>
-                      <code class="html">
-                      {
-                        "statusCode": 200,
-                        "message": "Usuário deletado com sucesso."
-                      }
-                        </code>
-                </pre>
-  </ul>
-  </p>
-</section>
+            </ul>
+            </p>
+          </section>
 
 
-
-
-
-
+          <hr class="divider">
 
 
 
@@ -879,21 +1018,48 @@
               <h4>Processo Macro Ingressos</h4>
               <div class="row">
                 <div class="col-lg-6">
-                  <p><a class="popup-img" href="assets/endingressos.jpeg"><img class="img-fluid border" src="assets/endingressos.jpeg"
+                  <p><a class="popup-img" href="assets/Endpoints Ingressos v2.png"><img class="img-fluid border" src="assets/Endpoints Ingressos v2.png"
                         alt=""></a></p>
+                </div>
+              </div>
+              <h4>Processo Macro TipoIngressos</h4>
+              <div class="row">
+                <div class="col-lg-6">
+                  <p><a class="popup-img" href="assets/TipoIngresso.png"><img class="img-fluid border"
+                        src="assets/TipoIngresso.png" alt=""></a></p>
                 </div>
               </div>
               <h4>Processo Macro Shows</h4>
               <div class="row">
                 <div class="col-lg-6">
-                  <p><a class="popup-img" href="assets/endshows.jpeg"><img class="img-fluid border" src="assets/endshows.jpeg"
+                  <p><a class="popup-img" href="assets/Endpoints Shows v2.png"><img class="img-fluid border" src="assets/Endpoints Shows v2.png"
+                        alt=""></a></p>
+                </div>
+              </div>
+              <h4>Processo Macro Usuarios</h4>
+              <div class="row">
+                <div class="col-lg-6">
+                  <p><a class="popup-img" href="assets/Endpoints Usuários.png"><img class="img-fluid border" src="assets/Endpoints Usuários.png" alt=""></a></p>
+                </div>
+              </div>
+              <h4>Processo Macro TipoUsuarios</h4>
+              <div class="row">
+                <div class="col-lg-6">
+                  <p><a class="popup-img" href="assets/TipoUsuário.png"><img class="img-fluid border"
+                        src="assets/TipoUsuário.png" alt=""></a></p>
+                </div>
+              </div>
+              <h4>Processo Macro Login</h4>
+              <div class="row">
+                <div class="col-lg-6">
+                  <p><a class="popup-img" href="assets/Login.png"><img class="img-fluid border" src="assets/Login.png"
                         alt=""></a></p>
                 </div>
               </div>
               <h4>Processo Macro Relatórios</h4>
               <div class="row">
                 <div class="col-lg-6">
-                  <p><a class="popup-img" href="assets/endrelatorio.jpeg"><img class="img-fluid border" src="assets/endrelatorio.jpeg"
+                  <p><a class="popup-img" href="assets/Ednpoint Relatorio v2.png"><img class="img-fluid border" src="assets/Ednpoint Relatorio v2.png"
                         alt=""></a></p>
                 </div>
               </div>
