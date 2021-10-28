@@ -771,6 +771,12 @@
     Para atualizar o usuario informar o ID do usuario a ser atualizado no parametro e as informações
     no body
   </p>
+  <li>
+    Caso não existe o ID do tipo de usuario será retornado o STATUS 404.
+  </li>
+  <li>
+    Caso de tudo OK será retornado o STATUS 200.
+  </li>
   <pre>
                           <code class="html">
                             {
@@ -782,12 +788,6 @@
                             }
                             </code>
                           </pre>
-  <li>
-    Caso não existe o ID do tipo de usuario será retornado o STATUS 404.
-  </li>
-  <li>
-    Caso de tudo OK será retornado o STATUS 200.
-  </li>
 
   <h4 id="deleteusuarios">DELETE /Usuarios/{ID}</h4>
   <p>Rota protegida ['Administrador']. Enviar no header Bearer o token JWT. </p>
